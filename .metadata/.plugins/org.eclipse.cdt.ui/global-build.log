@@ -1,0 +1,46 @@
+21:28:41 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:117:28: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  117 |    sprintf(buffer, "ADC1: %d ADC2: %d\n", data[0], data[1]);
+      |                           ~^              ~~~~~~~
+      |                            |                  |
+      |                            int                uint32_t {aka long unsigned int}
+      |                           %ld
+../Core/Src/main.c:117:37: warning: format '%d' expects argument of type 'int', but argument 4 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  117 |    sprintf(buffer, "ADC1: %d ADC2: %d\n", data[0], data[1]);
+      |                                    ~^              ~~~~~~~
+      |                                     |                  |
+      |                                     int                uint32_t {aka long unsigned int}
+      |                                    %ld
+../Core/Src/main.c:118:20: warning: pointer targets in passing argument 1 of 'CDC_Transmit_FS' differ in signedness [-Wpointer-sign]
+  118 |    CDC_Transmit_FS(buffer, strlen(buffer));
+      |                    ^~~~~~
+      |                    |
+      |                    char *
+In file included from ../Core/Src/main.c:24:
+../USB_DEVICE/App/usbd_cdc_if.h:110:34: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+  110 | uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
+      |                         ~~~~~~~~~^~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/Simulation/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33640	    488	   6248	  40376	   9db8	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+21:29:34 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33640	    488	   6248	  40376	   9db8	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
