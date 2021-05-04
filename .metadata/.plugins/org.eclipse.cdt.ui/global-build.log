@@ -1,46 +1,453 @@
-21:28:41 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+00:02:46 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
 make -j3 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:117:28: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  117 |    sprintf(buffer, "ADC1: %d ADC2: %d\n", data[0], data[1]);
-      |                           ~^              ~~~~~~~
-      |                            |                  |
-      |                            int                uint32_t {aka long unsigned int}
-      |                           %ld
-../Core/Src/main.c:117:37: warning: format '%d' expects argument of type 'int', but argument 4 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-  117 |    sprintf(buffer, "ADC1: %d ADC2: %d\n", data[0], data[1]);
-      |                                    ~^              ~~~~~~~
-      |                                     |                  |
-      |                                     int                uint32_t {aka long unsigned int}
-      |                                    %ld
-../Core/Src/main.c:118:20: warning: pointer targets in passing argument 1 of 'CDC_Transmit_FS' differ in signedness [-Wpointer-sign]
-  118 |    CDC_Transmit_FS(buffer, strlen(buffer));
-      |                    ^~~~~~
-      |                    |
-      |                    char *
-In file included from ../Core/Src/main.c:24:
-../USB_DEVICE/App/usbd_cdc_if.h:110:34: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-  110 | uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
-      |                         ~~~~~~~~~^~~
-arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/Simulation/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+../Core/Src/main.c:120:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  120 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:130:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  130 |     sprintf(temp, " DEGREE:%d", (int)(user_data.direksiyon-2275)*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                                   |
+      |                             int                                 double
+      |                            %f
+../Core/Src/main.c:135:20: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  135 |    sprintf(temp, "%d KM/S", (int)user_data.ileri*0.01);
+      |                   ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                    |                            |
+      |                    int                          double
+      |                   %f
+../Core/Src/main.c:140:20: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  140 |    sprintf(temp, "%d KM/S", (int)user_data.geri*0.01);
+      |                   ~^        ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                    |                           |
+      |                    int                         double
+      |                   %f
+../Core/Src/main.c:145:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  145 |    CDC_Transmit_FS(&buffer[0], strlen(buffer));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: ADC_DEMO1.elf
  
 arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
 arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
 arm-none-eabi-size   ADC_DEMO1.elf 
    text	   data	    bss	    dec	    hex	filename
-  33640	    488	   6248	  40376	   9db8	ADC_DEMO1.elf
+  35772	    488	   6256	  42516	   a614	ADC_DEMO1.elf
 Finished building: default.size.stdout
  
 Finished building: ADC_DEMO1.bin
  
 Finished building: ADC_DEMO1.list
  
-21:29:34 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+00:02:55 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
 make -j3 all 
 arm-none-eabi-size   ADC_DEMO1.elf 
    text	   data	    bss	    dec	    hex	filename
-  33640	    488	   6248	  40376	   9db8	ADC_DEMO1.elf
+  35772	    488	   6256	  42516	   a614	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+00:03:47 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35772	    488	   6256	  42516	   a614	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+00:05:26 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:120:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  120 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:130:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  130 |     sprintf(temp, " DEGREE: %d", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                   |
+      |                              int                                 double
+      |                             %f
+../Core/Src/main.c:135:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  135 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:140:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  140 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:145:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  145 |    CDC_Transmit_FS(&buffer[0], strlen(buffer));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35808	    488	   6256	  42552	   a638	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:08:15 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                   |
+      |                              int                                 double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:146:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  146 |    CDC_Transmit_FS(&buffer[0], strlen(buffer));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35816	    488	   6256	  42560	   a640	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:09:03 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                   |
+      |                              int                                 double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:146:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  146 |    CDC_Transmit_FS(&buffer[0], strlen(buffer));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35816	    488	   6256	  42560	   a640	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:10:28 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                   |
+      |                              int                                 double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:146:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  146 |    CDC_Transmit_FS(&buffer_send[0], strlen(buffer_send));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35812	    488	   6416	  42716	   a6dc	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:11:14 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                   |
+      |                              int                                 double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:146:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  146 |    CDC_Transmit_FS(&buffer_send[0], strlen(buffer_send));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35812	    488	   6416	  42716	   a6dc	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:11:44 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d", (int)user_data.direksiyon*0.066);
+      |                            ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                            |
+      |                             int                          double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                   |
+      |                              int                                 double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:144:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  144 |    CDC_Transmit_FS(&buffer_send[0], strlen(buffer_send));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35812	    488	   6416	  42716	   a6dc	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:13:05 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d ", (int)user_data.direksiyon*0.066);
+      |                            ~^    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                             |
+      |                             int                           double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d ", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                    |
+      |                              int                                  double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:144:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  144 |    CDC_Transmit_FS(&buffer_send[0], strlen(buffer_send));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35816	    488	   6416	  42720	   a6e0	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:16:35 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:121:29: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  121 |     sprintf(temp, " DEGREE:%d ", (int)user_data.direksiyon*0.066);
+      |                            ~^    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                             |                             |
+      |                             int                           double
+      |                            %f
+../Core/Src/main.c:131:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  131 |     sprintf(temp, " DEGREE: %d ", (int)(user_data.direksiyon-2275)*0.066);
+      |                             ~^    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              |                                    |
+      |                              int                                  double
+      |                             %f
+../Core/Src/main.c:136:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  136 |    sprintf(temp, " %d KM/S", (int)user_data.ileri*0.01);
+      |                    ~^        ~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                            |
+      |                     int                          double
+      |                    %f
+../Core/Src/main.c:141:21: warning: format '%d' expects argument of type 'int', but argument 3 has type 'double' [-Wformat=]
+  141 |    sprintf(temp, " %d KM/S\n", (int)user_data.geri*0.01);
+      |                    ~^          ~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     |                             |
+      |                     int                           double
+      |                    %f
+../Core/Src/main.c:144:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  144 |    CDC_Transmit_FS(&buffer_send[0], strlen(buffer_send));
+      |    ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35828	    488	   6416	  42732	   a6ec	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:29:25 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:117:4: warning: implicit declaration of function 'CDC_Transmit_FS' [-Wimplicit-function-declaration]
+  117 |    CDC_Transmit_FS(&user_data, sizeof(ts_user_input));
+      |    ^~~~~~~~~~~~~~~
+../Core/Src/main.c:86:7: warning: unused variable 'temp' [-Wunused-variable]
+   86 |  char temp[64] = {0};
+      |       ^~~~
+../Core/Src/main.c:85:7: warning: unused variable 'buffer_send' [-Wunused-variable]
+   85 |  char buffer_send[512] = {0};
+      |       ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_DEMO1.elf
+ 
+arm-none-eabi-objdump -h -S  ADC_DEMO1.elf  > "ADC_DEMO1.list"
+arm-none-eabi-objcopy  -O binary  ADC_DEMO1.elf  "ADC_DEMO1.bin"
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31356	    388	   6228	  37972	   9454	ADC_DEMO1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_DEMO1.bin
+ 
+Finished building: ADC_DEMO1.list
+ 
+00:30:33 **** Incremental Build of configuration Debug for project ADC_DEMO1 ****
+make -j3 all 
+arm-none-eabi-size   ADC_DEMO1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31356	    388	   6228	  37972	   9454	ADC_DEMO1.elf
 Finished building: default.size.stdout
  

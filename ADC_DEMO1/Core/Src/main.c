@@ -20,10 +20,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
+#include "simulation.h"
 
-#include "usbd_cdc_if.h"
-#include "string.h"
-#include "stdio.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -62,15 +60,17 @@ static void MX_ADC1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint32_t data[2] = {0};
-uint32_t adc_buffer[2] = {0};
+ts_user_input user_data;
+uint32_t adc_buffer[3] = {0};
+char buffer[160] = {0};
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if(hadc->Instance == ADC1)
 	{
-		data[0] = adc_buffer[0];
-		data[1] = adc_buffer[1];
+		user_data.ileri = adc_buffer[0];
+		user_data.geri = adc_buffer[1];
+		user_data.direksiyon = adc_buffer[2];
 	}
 }
 /* USER CODE END 0 */
@@ -82,7 +82,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	char buffer_send[512] = {0};
+	char temp[64] = {0};
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -107,18 +108,16 @@ int main(void)
   MX_ADC1_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 2);
+  HAL_ADC_Start_DMA(&hadc1, adc_buffer, 3);
   /* USER CODE END 2 */
-  char buffer[120] = {0};
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  sprintf(buffer, "ADC1: %d ADC2: %d\n", data[0], data[1]);
-	  CDC_Transmit_FS(buffer, strlen(buffer));
-	  HAL_Delay(2000);
-    /* USER CODE END WHILE */
+	  CDC_Transmit_FS(&user_data, sizeof(ts_user_input));
 
+	  HAL_Delay(500);
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -196,7 +195,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 2;
+  hadc1.Init.NbrOfConversion = 3;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
@@ -212,7 +211,16 @@ static void MX_ADC1_Init(void)
   }
   /** Configure Regular Channel
   */
+  sConfig.Channel = ADC_CHANNEL_9;
   sConfig.Rank = ADC_REGULAR_RANK_2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_7;
+  sConfig.Rank = ADC_REGULAR_RANK_3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -249,8 +257,8 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
 }
 

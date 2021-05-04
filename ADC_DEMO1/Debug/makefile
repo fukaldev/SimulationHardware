@@ -65,8 +65,8 @@ all: main-build
 main-build: ADC_DEMO1.elf secondary-outputs
 
 # Tool invocations
-ADC_DEMO1.elf: $(OBJS) $(USER_OBJS) /Users/fk97/Desktop/Simulation/ADC_DEMO1/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/fk97/Desktop/Simulation/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ADC_DEMO1.elf: $(OBJS) $(USER_OBJS) /Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ADC_DEMO1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/fk97/Desktop/SimulationHardware/ADC_DEMO1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_DEMO1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
